@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="./lib/angular.min.js"></script>
+    <script src="./index.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="cellNo">
+            <input type="number" class="form-control"  ng-model="rs">
+            <button class="btn btn-default" ng-click="createTr(cellNo,rs)">Submit</button>
+            <input type="text" class="form-control"  ng-model="search"  ng-keyup="searchNumber(search)"> <span class="glyphicon glyphicon-search"></span>
+            <select ng-model="selectedNetwork" ng-change="checkNetwork(selectedNetwork)">
+                <option value="allNetwork">All Network</option>
+                <option value="telenor">Telenor</option>
+                <option value="jazz">Jazz</option>
+                <option value="ufone">Ufone</option>
+                <option value="zong">zong</option>
+            </select>
+        </div>
+    </div>
+    <table class="table table-responsive">
+        <tr>
+            <th>SER.</th>
+            <th>CELL NO</th>
+            <th>RUPEES</th>
+            <th>DATE</th>
+        </tr>
+        <tr ng-repeat="item in arry track by $index" ng-hide="item.isHide" ng-class="{'info':$odd, 'success': $even}" >
+            <td>{{$index + 1}}</td>
+            <td>{{item.cellNo }}</td>
+            <td>{{item.rs}}</td>
+            <td>{{item.date}}</td>
+            <td ng-click="remove($index)"><button class="glyphicon glyphicon-remove btn-success"></button></td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>
